@@ -5,9 +5,17 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import HomeTabScreen from '../screens/HomeTabScreen';
+import SearchTabScreen from '../screens/SearchTabScreen';
+import {
+    BottomTabParamList,
+    OrdersTabParamList,
+    HomeTabParamList,
+    SearchTabParamList,
+    AccountTabParamList
+} from '../types';
+import AccountTabScreen from "../screens/AccountTabScreen";
+import OrdersTabScreen from "../screens/OrdersTabScreen";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -19,18 +27,32 @@ export default function BottomTabNavigator() {
       initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Home"
+        component={HomeTabNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Search"
+        component={SearchTabNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         }}
+      />
+      <BottomTab.Screen
+          name="Orders"
+          component={OrdersTabNavigator}
+          options={{
+              tabBarIcon: ({color}) => <TabBarIcon name="albums" color={color} />,
+          }}
+      />
+      <BottomTab.Screen
+          name="Account"
+          component={AccountTabNavigator}
+          options={{
+              tabBarIcon: ({color}) => <TabBarIcon name="person" color={color} />,
+          }}
       />
     </BottomTab.Navigator>
   );
@@ -39,35 +61,64 @@ export default function BottomTabNavigator() {
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: string; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  // @ts-ignore
+    return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const HomeTabStack = createStackNavigator<HomeTabParamList>();
 
-function TabOneNavigator() {
+function HomeTabNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <HomeTabStack.Navigator>
+      <HomeTabStack.Screen
+        name="HomeTabScreen"
+        component={HomeTabScreen}
+        options={{ headerTitle: 'Home',  }}
       />
-    </TabOneStack.Navigator>
+    </HomeTabStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const SearchTabStack = createStackNavigator<SearchTabParamList>();
 
-function TabTwoNavigator() {
+function SearchTabNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <SearchTabStack.Navigator>
+      <SearchTabStack.Screen
+        name="SearchTabScreen"
+        component={SearchTabScreen}
+        options={{ headerTitle: 'Search' }}
       />
-    </TabTwoStack.Navigator>
+    </SearchTabStack.Navigator>
   );
+}
+
+const OrdersTabStack = createStackNavigator<OrdersTabParamList>();
+
+function OrdersTabNavigator() {
+  return (
+    <OrdersTabStack.Navigator>
+      <OrdersTabStack.Screen
+        name="OrdersTabScreen"
+        component={OrdersTabScreen}
+        options={{ headerTitle: 'Orders' }}
+      />
+    </OrdersTabStack.Navigator>
+  );
+}
+
+const AccountTabStack = createStackNavigator<AccountTabParamList>();
+
+function AccountTabNavigator() {
+    return (
+        <AccountTabStack.Navigator>
+            <AccountTabStack.Screen
+                name="AccountTabScreen"
+                component={AccountTabScreen}
+                options={{ headerTitle: 'Account' }}
+            />
+        </AccountTabStack.Navigator>
+    );
 }
