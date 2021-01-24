@@ -1,9 +1,9 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
-import Colors from '../constants/Colors';
+import Colors, { ThemePrimaryColor} from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeTabScreen from '../screens/HomeTabScreen';
 import SearchTabScreen from '../screens/SearchTabScreen';
@@ -21,11 +21,12 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+  // Colors[colorScheme].tint
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Home"
+      tabBarOptions={{ activeTintColor: ThemePrimaryColor }}>
       <BottomTab.Screen
         name="Home"
         component={HomeTabNavigator}
@@ -44,14 +45,14 @@ export default function BottomTabNavigator() {
           name="Orders"
           component={OrdersTabNavigator}
           options={{
-              tabBarIcon: ({color}) => <TabBarIcon name="albums" color={color} />,
+              tabBarIcon: ({color}) => <TabBarIcon name="shopping-bag" color={color} />,
           }}
       />
       <BottomTab.Screen
           name="Account"
           component={AccountTabNavigator}
           options={{
-              tabBarIcon: ({color}) => <TabBarIcon name="person" color={color} />,
+              tabBarIcon: ({color}) => <TabBarIcon name="user" color={color} />,
           }}
       />
     </BottomTab.Navigator>
@@ -62,7 +63,7 @@ export default function BottomTabNavigator() {
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: string; color: string }) {
   // @ts-ignore
-    return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+    return <Feather size={24} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -75,7 +76,7 @@ function HomeTabNavigator() {
       <HomeTabStack.Screen
         name="HomeTabScreen"
         component={HomeTabScreen}
-        options={{ headerTitle: 'Home',  }}
+        options={{ headerTitle: 'Home', headerShown: false }}
       />
     </HomeTabStack.Navigator>
   );
@@ -89,7 +90,7 @@ function SearchTabNavigator() {
       <SearchTabStack.Screen
         name="SearchTabScreen"
         component={SearchTabScreen}
-        options={{ headerTitle: 'Search' }}
+        options={{ headerTitle: 'Search', headerShown: false  }}
       />
     </SearchTabStack.Navigator>
   );
@@ -103,7 +104,7 @@ function OrdersTabNavigator() {
       <OrdersTabStack.Screen
         name="OrdersTabScreen"
         component={OrdersTabScreen}
-        options={{ headerTitle: 'Orders' }}
+        options={{ headerTitle: 'Orders', headerShown: false  }}
       />
     </OrdersTabStack.Navigator>
   );
@@ -117,7 +118,7 @@ function AccountTabNavigator() {
             <AccountTabStack.Screen
                 name="AccountTabScreen"
                 component={AccountTabScreen}
-                options={{ headerTitle: 'Account' }}
+                options={{ headerTitle: 'Account', headerShown: false  }}
             />
         </AccountTabStack.Navigator>
     );

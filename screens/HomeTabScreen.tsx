@@ -1,26 +1,36 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import {ThemePrimaryColor} from "../constants/Colors";
+import {AppBar} from "../components/appBar";
 
 export default function HomeTabScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+    <View>
+      <AppBar />
+      <View style={{backgroundColor: ThemePrimaryColor, flexGrow: 1}}>
+
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 35,
+    paddingHorizontal: 15
+  },
+  logoImg: {
+    height: 45,
+
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center"
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   separator: {
