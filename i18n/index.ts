@@ -9,7 +9,8 @@ i18n.translations = {
     fr: frLang,
 };
 // Set the locale once at the beginning of your app.
-i18n.locale = Localization.locale;
+// i18n.locale = Localization.locale;
+i18n.locale = 'fr';
 // When a value is missing from a language it'll fallback to another language with the key present.
 i18n.fallbacks = true;
 

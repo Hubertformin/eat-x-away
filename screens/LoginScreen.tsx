@@ -27,17 +27,17 @@ const LoginComponent = ({navigation}) => {
                 <Image source={require('../assets/images/logo-45.png')} />
                 <View style={{height: 20}} />
                 {/*<LobsterText style={styles.title}>EatAWay</LobsterText>*/}
-                <Text style={styles.subtitle}>{translate('login.title')}</Text>
-                <Text>{translate('login.text')}</Text>
+                <Text style={styles.subtitle}>{translate('loginView.title')}</Text>
+                <Text>{translate('loginView.text')}</Text>
             </View>
             <View style={{height: 30}} />
             <AppInputGroup placeholder={translate('emailLabel')} />
             <AppInputGroup placeholder={translate('passwordLabel')} secureTextEntry={true} />
-            <View style={{flexDirection: "row",justifyContent: "flex-end"}}><Text>{translate('login.forgotPassword')}</Text></View>
+            <View style={{flexDirection: "row",justifyContent: "flex-end"}}><Text>{translate('loginView.forgotPassword')}</Text></View>
             <View style={{height: 20}} />
             <AppButton title={translate('signIn')} onPress={() => {}} />
             <View style={{flexDirection: "row", paddingVertical: 15}}>
-                <Text style={{fontSize: 15, marginRight: 5}}>{translate('login.noAccount')}</Text>
+                <Text style={{fontSize: 15, marginRight: 5}}>{translate('loginView.noAccount')}</Text>
                 <TouchableOpacity onPress={() => {navigation.navigate('SignUp')}}><Text style={{color: ThemePrimaryColor, fontSize: 15}}>{translate('signUp')}</Text></TouchableOpacity>
             </View>
         </View>

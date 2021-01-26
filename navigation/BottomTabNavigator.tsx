@@ -16,6 +16,7 @@ import {
 } from '../types';
 import AccountTabScreen from "../screens/AccountTabScreen";
 import OrdersTabScreen from "../screens/OrdersTabScreen";
+import {AppBar} from "../components/appBar";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -77,6 +78,7 @@ function HomeTabNavigator() {
         name="HomeTabScreen"
         component={HomeTabScreen}
         options={{ headerTitle: 'Home', headerShown: false }}
+        // options={{ headerTitle: props => <AppBar /> }}
       />
     </HomeTabStack.Navigator>
   );

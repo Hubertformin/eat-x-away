@@ -6,6 +6,7 @@ import {ThemePrimaryColor} from "../constants/Colors";
 import {AppButton} from "../components/buttons";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {UserModel} from "../models/user";
+import {translate} from "../i18n";
 
 const SignUpStack = createStackNavigator();
 
@@ -24,9 +25,11 @@ export default function SignUpScreen() {
 
 const SignUpComponent = ({navigation}) => {
     const [userForm, setUserForm] = useState<UserModel>({});
+    const [loading, setLoading] = useState<boolean>(false);
 
     function createAccount() {
-        console.log(userForm);
+        // console.log(userForm);
+        navigation.navigate('Root');
     }
 
     return (
@@ -36,26 +39,26 @@ const SignUpComponent = ({navigation}) => {
                     <Image source={require('../assets/images/logo-45.png')} />
                     <View style={{height: 20}} />
                     {/*<LobsterText style={styles.title}>EatAWay</LobsterText>*/}
-                    <Text style={styles.subtitle}>Get started</Text>
-                    <Text>Create an account to continue</Text>
+                    <Text style={styles.subtitle}>{translate('signUpView.title')}</Text>
+                    <Text>{translate('signUpView.text')}</Text>
                 </View>
                 <View style={{height: 30}} />
                 <AppInputGroup
-                    placeholder="Name"
+                    placeholder={translate('nameLabel')}
                     onChangeText={(text) => {
                         setUserForm({...userForm, name: text});
                     }}
                 />
 
                 <AppInputGroup
-                    placeholder="Email"
+                    placeholder={translate('emailLabel')}
                     onChangeText={(text) => {
                         setUserForm({...userForm, email: text});
                     }}
                 />
 
                 <AppInputGroup
-                    placeholder="Password"
+                    placeholder={translate('passwordLabel')}
                     secureTextEntry={true}
                     onChangeText={(text) => {
                         setUserForm({...userForm, password: text});
@@ -63,7 +66,7 @@ const SignUpComponent = ({navigation}) => {
                 />
 
                 <AppInputGroup
-                    label="Phone number"
+                    label={translate('phoneNumberLabel')}
                     placeholder="+237 6XX XX XX XX"
                     keyboardType="phone-pad"
                     onChangeText={(text) => {
@@ -71,11 +74,11 @@ const SignUpComponent = ({navigation}) => {
                     }}
                 />
 
-                <AppButton title={"Create Account"} onPress={createAccount} />
+                <AppButton title={translate('signUpView.actionBtn')} loading={loading} onPress={createAccount} />
 
                 <View style={{flexDirection: "row", paddingVertical: 15}}>
-                    <Text style={{fontSize: 15, marginRight: 5}}>Have an account?</Text>
-                    <TouchableOpacity onPress={() => {navigation.navigate('Login')}}><Text style={{color: ThemePrimaryColor, fontSize: 15}}>Login</Text></TouchableOpacity>
+                    <Text style={{fontSize: 15, marginRight: 5}}>{translate('signUpView.haveAccount')}</Text>
+                    <TouchableOpacity onPress={() => {navigation.navigate('Login')}}><Text style={{color: ThemePrimaryColor, fontSize: 15}}>{translate('signIn')}</Text></TouchableOpacity>
                 </View>
             </View>
         </KeyboardAwareScrollView>

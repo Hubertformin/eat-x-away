@@ -1,15 +1,19 @@
 import {Image, StyleSheet} from "react-native";
 import {LobsterText} from "./StyledText";
 import {ThemePrimaryColor} from "../constants/Colors";
-import {View} from "./Themed";
+import {View, Text} from "./Themed";
 import * as React from "react";
+import {Zocial} from "@expo/vector-icons";
 
-export function AppBar() {
+export function AppBar({style = {}}) {
     return (
-        <View style={styles.container}>
+        <View style={{...style, ...styles.container}}>
             <View style={styles.titleContainer}>
                 <Image style={styles.logoImg} source={require('../assets/images/logo-45.png')} />
-                <LobsterText style={styles.title}>Eat</LobsterText><LobsterText style={{...styles.title, color: ThemePrimaryColor}}>Away</LobsterText>
+                <Text style={styles.title}>Eat</Text><Text style={{...styles.title, color: ThemePrimaryColor}}>Away</Text>
+            </View>
+            <View>
+                <Zocial name="cart" size={24} color={'#666666'} />
             </View>
         </View>
     )
@@ -17,12 +21,13 @@ export function AppBar() {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 25,
+        paddingVertical: 10,
         paddingHorizontal: 15,
-        height: 75
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
     logoImg: {
-        height: 45,
+        height: 35,
 
     },
     titleContainer: {
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     title: {
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'bold',
     },
 });
