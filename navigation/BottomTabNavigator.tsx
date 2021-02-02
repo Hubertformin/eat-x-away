@@ -1,4 +1,4 @@
-import { Feather } from '@expo/vector-icons';
+import {Feather, Ionicons} from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -16,7 +16,6 @@ import {
 } from '../types';
 import AccountTabScreen from "../screens/AccountTabScreen";
 import OrdersTabScreen from "../screens/OrdersTabScreen";
-import {AppBar} from "../components/appBar";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -46,7 +45,7 @@ export default function BottomTabNavigator() {
           name="Orders"
           component={OrdersTabNavigator}
           options={{
-              tabBarIcon: ({color}) => <TabBarIcon name="shopping-bag" color={color} />,
+              tabBarIcon: ({color}) => <Ionicons name="albums-outline" style={{ marginBottom: -3 }} size={24} color={color} />,
           }}
       />
       <BottomTab.Screen

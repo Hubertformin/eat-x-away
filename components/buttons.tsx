@@ -1,10 +1,10 @@
 import React from "react";
-import {Text, TouchableOpacity, StyleSheet, ActivityIndicator, View} from "react-native";
+import {Text, TouchableOpacity, StyleSheet, ActivityIndicator, View, StyleProp, ViewStyle} from "react-native";
 import {ThemePrimaryColor} from "../constants/Colors";
 
-export function AppButton({onPress, title, loading = false}: {onPress: any, title: string, loading?: boolean}) {
+export function AppButton({onPress, title, loading = false, style = {}}: {onPress: any, title: string, loading?: boolean, style?: any}) {
     return !loading ? (
-        <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={onPress} style={{...style, ...styles.appButtonContainer}}>
             <Text style={styles.appButtonText}>{title}</Text>
         </TouchableOpacity>
     ) : (
