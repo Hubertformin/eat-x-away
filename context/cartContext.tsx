@@ -19,8 +19,9 @@ export default function CartContextProvider({children}) {
     const addToCart = (item) => {
         const exist = !!cart.find(it => it.id === item.id);
         if (!exist) {
-            setCart([...cart, item]);
-            setCartAmount(getCartAmount());
+            const _cart = [...cart, item];
+            setCart(_cart);
+            setCartAmount(getCartAmount(_cart));
         }
     };
 
@@ -32,17 +33,17 @@ export default function CartContextProvider({children}) {
     const removeItem = (id) => {
         const _newData = cart.filter(item => item.id !== id);
         setCart(_newData);
-        setCartAmount(getCartAmount());
+        setCartAmount(getCartAmount(_newData));
     };
 
     const setCartItems = (items) => {
         setCart([...items]);
-        setCartAmount(getCartAmount());
+        setCartAmount(getCartAmount([...items]));
     };
 
-    const getCartAmount = () => {
+    const getCartAmount = (data) => {
         let total = 0;
-        cart.forEach(item => {
+        data.forEach(item => {
             total += Number(item.orderQuantity) * Number(item.unitPrice);
         });
         return total;

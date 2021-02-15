@@ -44,7 +44,7 @@ const CartComponent = ({navigation}) => {
                                       <Image style={styles.listItemImg} source={{uri: item.imageUrl}} />
                                       <View style={{justifyContent: "center", backgroundColor: 'transparent', paddingHorizontal: 15}}>
                                           <Text key={`b-t-it-${item.id}`} style={{fontSize: 16, fontWeight: "500"}}>{item.name}</Text>
-                                          <Text key={`b-p-it-${item.id}`} style={{fontSize: 14, fontWeight: "500", color: ThemePrimaryColor}}>{formatCurrency(item.orderQuantity * item.unitPrice)}</Text>
+                                          <Text key={`b-p-it-${item.id}`} style={{fontSize: 14, fontWeight: "500", color: ThemePrimaryColor}}>{formatCurrency(item?.orderQuantity * item?.unitPrice)}</Text>
                                           <NumericInput borderColor={'transparent'}
                                                         minValue={1}
                                                         value={item.orderQuantity}
@@ -67,7 +67,7 @@ const CartComponent = ({navigation}) => {
           <View style={styles.totalPreview}>
               <Text>Subtotal</Text>
               <Text style={styles.subTotal}>{formatCurrency(cartAmount)}</Text>
-              <AppButton title={'Checkout'} onPress={() => {}} />
+              <AppButton title={'Checkout'} onPress={() => {navigation.navigate('Checkout')}} />
           </View>
       </View>
     );
